@@ -34,12 +34,12 @@ public:
 	int getErrorID() const;
 
 	// Operators
-	virtual bool operator==(Date&) const;
-	virtual bool operator<=(Date&) const;
-	virtual bool operator>=(Date&) const;
-	virtual bool operator!=(Date&) const;
-	virtual bool operator<(Date&) const;
-	virtual bool operator>(Date&) const;
+	virtual bool operator==(const Date&) const;
+	virtual bool operator<=(const Date&) const;
+	virtual bool operator>=(const Date&) const;
+	virtual bool operator!=(const Date&) const;
+	virtual bool operator<(const Date&) const;
+	virtual bool operator>(const Date&) const;
 	const Date& operator=(const Date &other);
 
 	// input/output

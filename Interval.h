@@ -142,11 +142,11 @@ template <typename T>
 void Interval<T>::print(ostream& out) const {
 	if (!isEmpty()) {
 		if (this->start > this->end) {
-			cout << "Invalid Interval";
+			cout << "Invalid interval";
 			return;
 		}
 		else { // prints the interval
-			cout << '(' << this->start << ',' << this->end << ')';
+			cout << '(' << this->start << ", " << this->end << ')';
 			return;
 		}
 	}

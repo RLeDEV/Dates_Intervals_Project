@@ -1,8 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
+#define _CRT_NONSTDC_NO_DEPRECATE
 #include "Date.h"
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <string.h>
 
 using std::string;
 using namespace std;
@@ -103,7 +105,7 @@ int Date::parseDay(string dateInput) const {
 int Date::parseMonth(string dateInput) const {
 	string month = "";
 	int i, finalMonth;
-	char *dup = _strdup(dateInput.c_str());
+	char *dup = strdup(dateInput.c_str());
 	dateInput = strtok(dup, "/");
 	dateInput = strtok(NULL, "/");
 	for (i = 0; i < 2; i++) {
@@ -118,7 +120,7 @@ int Date::parseMonth(string dateInput) const {
 int Date::parseYear(string dateInput) const {
 	string year = "";
 	int i, finalYear;
-	char *dup = _strdup(dateInput.c_str());
+	char *dup = strdup(dateInput.c_str());
 	dateInput = strtok(dup, "/");
 	dateInput = strtok(NULL, "/");
 	dateInput = strtok(NULL, "/");

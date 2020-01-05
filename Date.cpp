@@ -105,6 +105,7 @@ int Date::parseMonth(string dateInput) const {
 	int i, finalMonth;
 	char *dup = _strdup(dateInput.c_str());
 	dateInput = strtok(dup, "/");
+	dateInput = strtok(NULL, "/");
 	for (i = 0; i < 2; i++) {
 		if (dateInput[i] != '/')
 			month += dateInput[i];
@@ -120,7 +121,12 @@ int Date::parseYear(string dateInput) const {
 	char *dup = _strdup(dateInput.c_str());
 	dateInput = strtok(dup, "/");
 	dateInput = strtok(NULL, "/");
+	dateInput = strtok(NULL, "/");
 	for (i = 0; i < 4; i++) {
+		if (dateInput.length() == 1) {
+			year += dateInput[i];
+			break;
+		}
 		year += dateInput[i];
 	}
 	finalYear = stoi(year);
@@ -132,7 +138,7 @@ int Date::parseYear(string dateInput) const {
 const Date& Date::operator=(const Date &other) {
 	if (isValid(other.day, other.month, other.year)) {
 
-		errorID = 0;
+		errorID = -1;
 	}
 	day = other.day;
 	month = other.month;
@@ -140,13 +146,13 @@ const Date& Date::operator=(const Date &other) {
 	return *this;
 }
 
-bool Date::operator==(Date& otherDate) const {
+bool Date::operator==(const Date& otherDate) const {
 	if (day == otherDate.day && month == otherDate.month && year == otherDate.year)
 		return true;
 	return false;
 }
 
-bool Date::operator<=(Date& otherDate) const {
+bool Date::operator<=(const Date& otherDate) const {
 	if (this == &otherDate)
 		return true;
 	else if (this->year < otherDate.year)
@@ -158,7 +164,7 @@ bool Date::operator<=(Date& otherDate) const {
 	return false;
 }
 
-bool Date::operator>=(Date& otherDate) const {
+bool Date::operator>=(const Date& otherDate) const {
 	if (this == &otherDate)
 		return true;
 	else if (!(this <= &otherDate))
@@ -166,13 +172,13 @@ bool Date::operator>=(Date& otherDate) const {
 	return false;
 }
 
-bool Date::operator!=(Date& otherDate) const {
-	if (!(this == &otherDate))
+bool Date::operator!=(const Date& otherDate) const {
+	if (day != otherDate.day || month != otherDate.month || year != otherDate.year)
 		return true;
 	return false;
 }
 
-bool Date::operator<(Date& otherDate) const {
+bool Date::operator<(const Date& otherDate) const {
 	if (year < otherDate.year)
 		return true;
 	else if (year == otherDate.year && month < otherDate.month)
@@ -182,7 +188,7 @@ bool Date::operator<(Date& otherDate) const {
 	return false;
 }
 
-bool Date::operator>(Date& otherDate) const {
+bool Date::operator>(const Date& otherDate) const {
 	if (this == &otherDate)
 		return false;
 	else if (!(this < &otherDate))
@@ -220,10 +226,10 @@ void Date::getProblem() const {
 		cout << "There's no error";
 		break;
 	case 1:
-		cout << "Invalid day";
+		cout << "Illegal day for month";
 		break;
 	case 2:
-		cout << "Invalid month";
+		cout << "Illegal month";
 		break;
 	case 3:
 		cout << "Not a leap year";

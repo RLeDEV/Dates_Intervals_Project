@@ -1,9 +1,10 @@
-﻿#include "Date.h"
+﻿#include <iostream>
+#include <iomanip>
+#include "Date.h"
 #include "IComparable.h"
 #include "IPrintable.h"
 #include "Interval.h"
-#include <iostream>
-#include <iomanip>
+
 
 using namespace std;
 
@@ -30,14 +31,15 @@ void testDate() {
 	cout << "Is other date <= independence ? " << (*otherP <= independence) << endl;
 }
 
-/*
+
 void testDateInput() {
 	Date otherDate(1, 1, 1);
 	do {
 		cin >> otherDate;
 		cout << otherDate << endl;
-	} while (otherDate != Date(1, 1, 1));
+	} while (otherDate != Date(1, 1, 1)); // stucks here.
 }
+
 
 
 void testIntervalInt() {
@@ -99,15 +101,15 @@ void testIntervalInt() {
 	cout << "interval45 || interval24 = " << (interval45 || interval24) << endl;
 
 }
-*/
+
 
 int main() {
 	cout << boolalpha << setfill('0');
 	testDate();
 	cout << endl << endl;
-	//testIntervalInt();
+	testIntervalInt();
 	cout << endl << endl;
-	//testDateInput();
+	testDateInput();
 
 	return 0;
 }
